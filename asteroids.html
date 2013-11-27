@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asteroids!</title>
+    <style>
+    body {
+      font-family: 'Futura';
+      color: white;
+
+      background:url(background.jpg);
+      background-size:1700px;
+      background-repeat:no-repeat;
+    }
+    div {
+      text-align: center;
+      max-width: 500;
+      margin-left: 75px;
+      float: left;
+    }
+    canvas {
+      box-shadow:0 0 15px rgba(0, 0, 0, 0.7);
+    }
+    </style>
+</head>
+<body>
+    <div>
+      <h1>ASTEROIDS</h1>
+      <canvas width="500" height="500"></canvas>
+    </div>
+
+
+    <script src="lib/mods.js"></script>
+    <script>
+      var app = {};
+    </script>
+
+    <script src="moving_object.js"></script>
+    <script src="asteroid.js"></script>
+    <script src="game.js"></script>
+    <script>
+        var canvas = document.getElementsByTagName("canvas")[0];
+        var ctx = canvas.getContext("2d");
+
+        var game = new app.Game(ctx);
+
+        game.start();
+
+    </script>
+</body>
+</html>
