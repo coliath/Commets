@@ -27,9 +27,7 @@
     }
   };
 
-
   Ship.prototype.fireBullet = function (score) {
-    console.log(score);
     if (score < 2) {
       return this.normalFire();
     } else if (score < 10) {
@@ -40,69 +38,47 @@
       return this.superCrayCrayFire();
     }
   };
+  
+  Ship.prototype.generateVelocities = function () {
+	  var Bullet = new app.Bullet();
+	  
+	  var multiplier = Bullet.SPEED/(Math.abs(this.xV) + Math.abs(this.yV));
+	  
+      if (multiplier > 1000) { multiplier = 0; }
+	
+      var bX = multiplier * this.xV;
+      var bY = multiplier * this.yV;
+
+      if (bX === 0) {
+        bX = 5;
+        bY = 5;
+      }
+	  
+	  return [bX, bY];
+  }
 
   Ship.prototype.normalFire = function () {
-    var Bullet = new app.Bullet();
-    var speed = Bullet.SPEED;
+    var velocities = this.generateVelocities();
 
-
-    var multiplier = speed/(Math.abs(this.xV) + Math.abs(this.yV));
-    if (multiplier > 1000) {
-      multiplier = 0;
-    }
-    var bX = multiplier * this.xV;
-    var bY = multiplier * this.yV;
-
-    if (bX === 0) {
-      bX = 5;
-      bY = 5;
-    }
-
-
-
-    var bullet = new app.Bullet(this.x, this.y, bX, bY);
+    var bullet = new app.Bullet(this.x, this.y, velocities[0], velocities[1]);
     return [bullet];
   };
 
 
   Ship.prototype.superFire = function () {
-    var Bullet = new app.Bullet();
-    var speed = Bullet.SPEED;
+    var velocities = this.generateVelocities();
 
-
-    var multiplier = speed/(Math.abs(this.xV) + Math.abs(this.yV));
-    if (multiplier > 1000) {
-      multiplier = 0;
-    }
-    var bX = multiplier * this.xV;
-    var bY = multiplier * this.yV;
-    if (bX === 0) {
-      bX = 5;
-      bY = 5;
-    }
-
-    var bullet1 = new app.Bullet(this.x, this.y, bX, bY);
-    var bullet2 = new app.Bullet(this.x, this.y, 0, bY);
-    var bullet3 = new app.Bullet(this.x, this.y, bX, 0);
+    var bullet1 = new app.Bullet(this.x, this.y, velocities[0], velocities[1]);
+    var bullet2 = new app.Bullet(this.x, this.y, 0, velocities[1]);
+    var bullet3 = new app.Bullet(this.x, this.y, velocities[0], 0);
     return [bullet1, bullet2, bullet3];
   }
 
   Ship.prototype.superCrayFire = function () {
-    var Bullet = new app.Bullet();
-    var speed = Bullet.SPEED;
-
-
-    var multiplier = speed/(Math.abs(this.xV) + Math.abs(this.yV));
-    if (multiplier > 1000) {
-      multiplier = 0;
-    }
-    var bX = multiplier * this.xV;
-    var bY = multiplier * this.yV;
-
-    if (bX === 0) {
-      bX = 5;
-      bY = 5;
-    }
+    var velocities = this.generateVelocities();
+	var bX = velocities[0];
+	var bY = velocities[1];
+	
     var bullet1 = new app.Bullet(this.x, this.y, bX, bY);
     var bullet2 = new app.Bullet(this.x, this.y, 0, bY);
     var bullet3 = new app.Bullet(this.x, this.y, bX, 0);
@@ -112,21 +88,10 @@
   }
 
   Ship.prototype.superCrayCrayFire = function () {
-    var Bullet = new app.Bullet();
-    var speed = Bullet.SPEED;
-
-
-    var multiplier = speed/(Math.abs(this.xV) + Math.abs(this.yV));
-    if (multiplier > 1000) {
-      multiplier = 0;
-    }
-    var bX = multiplier * this.xV;
-    var bY = multiplier * this.yV;
-
-    if (bX === 0) {
-      bX = 5;
-      bY = 5;
-    }
+    var velocities = this.generateVelocities();
+  	var bX = velocities[0];
+  	var bY = velocities[1];
+	
     var bullet1 = new app.Bullet(this.x, this.y, bX, bY);
     var bullet2 = new app.Bullet(this.x, this.y, 0, bY);
     var bullet3 = new app.Bullet(this.x, this.y, bX, 0);
@@ -139,7 +104,5 @@
     var bullet10 = new app.Bullet(this.x, this.y, 7, bY);
     return [bullet1, bullet2, bullet3, bullet4, bullet5, bullet6, bullet7, bullet8, bullet9, bullet10];
   }
-
-
 
 })(app);

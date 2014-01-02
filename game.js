@@ -14,7 +14,6 @@
 
   Game.gameReset = function () {
     game.stop();
-    console.log("here")
     game = new Game(ctx);
     game.start();
   };
@@ -48,7 +47,7 @@
     this.ctx.clearRect(0,0,this.DIM_X,this.DIM_Y)
     this.ctx.fillRect(0,0,500,500);
     this.ship.draw(this.ctx);
-    // _.each(this.asteroids, function(asteroid) { asteroid.draw(this.ctx); })
+	
     for (var i = 0; i < this.asteroids.length; i++) {
       this.asteroids[i].draw(this.ctx);
     }
@@ -85,20 +84,20 @@
         this.addAsteroids();
       }
     }
+	
     this.asteroids.clean(null);
 
     for (var j = 0; j < this.bullets.length; j++) {
       var b = this.bullets[j];
-      //console.log(b)
       if (b.x > 550 || b.x < -50 || b.y > 550 || b.y < -50) {
         this.bullets[j] = null;
       }
     }
+	
     this.bullets.clean(null);
   };
 
   Game.prototype.hitAsteroids = function () {
-
     this.asteroids.clean(null);
     this.bullets.clean(null);
 
@@ -108,7 +107,6 @@
 
         this.asteroids.clean(null);
 
-
         if (this.bullets[j].isCollidedWith(this.asteroids[i])) {
           this.asteroids[i] = null;
           this.bullets[j] = null;
@@ -116,9 +114,7 @@
           this.incScore();
           this.bullets.clean(null);
         }
-
       }
-
     }
 
     this.asteroids.clean(null);
@@ -138,24 +134,22 @@
     var that = this;
     key('up', function () {
       that.ship.power([0, -1]);
-    })
+    });
     key('down', function () {
       that.ship.power([0, 1]);
-    })
+    });
     key('right', function () {
       that.ship.power([1, 0]);
-    })
+    });
     key('left', function () {
       that.ship.power([-1, 0]);
-    })
+    });
     key('space', function () {
       var bulletsToAdd = that.ship.fireBullet(that.score);
-      console.log(bulletsToAdd);
       for (var i = 0; i < bulletsToAdd.length; i++) {
-        console.log(i);
         that.bullets.push(bulletsToAdd[i]);
       }
-    })
+    });
   };
 
 })(app);
