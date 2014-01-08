@@ -1,3 +1,3 @@
-Asteroids
+Commets
 =========
-Have fun with this classic game!
+Have fun with this remake of the classic game Asteroids!
