@@ -5,17 +5,27 @@
     <style>
     body {
       font-family: 'Futura';
-      color: #CC99CC;
-
-      background:url(background.jpg);
-      background-size:2100px;
-      background-repeat:no-repeat;
+      color: white;
+      background:#2c3e50;
+    }
+    h1 {
+      margin: 10px;
     }
     div {
       text-align: center;
       max-width: 500;
-      margin-left: 75px;
-      float: left;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button {
+      height: 50px;
+      width: 100px;
+      background: white;
+      box-shadow:0 0 15px rgba(0, 0, 0, 0.7);
+      border: none;
+    }
+    button:hover {
+      cursor: pointer;
     }
     canvas {
       box-shadow:0 0 15px rgba(0, 0, 0, 0.7);
@@ -28,7 +38,7 @@
       <h1 id="score">Score: 0</h1>
       <canvas width="500" height="500"></canvas>
       <br>
-      <button onclick="app.Game.gameReset()">RESTART</button>
+      <button id="restart-btn" onclick="app.Game.gameReset()">RESTART</button>
     </div>
 
 
@@ -47,9 +57,7 @@
     <script>
         var canvas = document.getElementsByTagName("canvas")[0];
         var ctx = canvas.getContext("2d");
-
         var game = new app.Game(ctx);
-
         game.start();
     </script>
 </body>

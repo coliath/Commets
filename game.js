@@ -6,7 +6,7 @@
     this.DIM_X = 500;
     this.DIM_Y = 500;
     this.FPS = 30;
-    this.ship = new app.Ship(250, 250, 0, 0)
+    this.ship = new app.Ship(250, 250, 0, 0);
     this.addAsteroids(10);
     this.bullets = [];
     this.score = 0;
@@ -15,6 +15,8 @@
   Game.gameReset = function () {
     game.stop();
     game = new Game(ctx);
+    document.getElementById("head").innerHTML = "COMMETS";
+    document.activeElement.blur();
     game.start();
   };
 
@@ -44,10 +46,9 @@
   };
 
   Game.prototype.draw = function () {
-    this.ctx.clearRect(0,0,this.DIM_X,this.DIM_Y)
+    this.ctx.clearRect(0,0,this.DIM_X,this.DIM_Y);
     this.ctx.fillRect(0,0,500,500);
     this.ship.draw(this.ctx);
-	
     for (var i = 0; i < this.asteroids.length; i++) {
       this.asteroids[i].draw(this.ctx);
     }
