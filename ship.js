@@ -42,18 +42,17 @@
   Ship.prototype.generateVelocities = function () {
 	  var Bullet = new app.Bullet();
 	  
-	  var multiplier = Bullet.SPEED/(Math.abs(this.xV) + Math.abs(this.yV));
+	  var multiplier = 1 + Bullet.SPEED/(Math.abs(this.xV) + Math.abs(this.yV));
 	  
-      if (multiplier > 1000) { multiplier = 0; }
+    if (multiplier > 1000) { multiplier = 0; }
 	
-      var bX = multiplier * this.xV;
-      var bY = multiplier * this.yV;
+    var bX = multiplier * this.xV;
+    var bY = multiplier * this.yV;
 
-      if (bX === 0) {
-        bX = 5;
-        bY = 5;
-      }
-	  
+    if (bX === 0 && bY === 0) {
+      bY = Math.random(-5, 5);
+    }
+
 	  return [bX, bY];
   }
 

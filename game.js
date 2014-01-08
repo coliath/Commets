@@ -15,7 +15,7 @@
   Game.gameReset = function () {
     game.stop();
     game = new Game(ctx);
-    document.getElementById("head").innerHTML = "COMMETS";
+    document.getElementById("head").innerHTML = "COMETS";
     document.activeElement.blur();
     game.start();
   };
